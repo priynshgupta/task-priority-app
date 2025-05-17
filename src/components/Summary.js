@@ -3,9 +3,11 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { FiClock, FiCheckCircle, FiFlag } from 'react-icons/fi';
 import useTaskManager from '../hooks/useTaskManager';
+import useTheme from '../hooks/useTheme';
 
 const Summary = () => {
   const { tasks } = useTaskManager();
+  const { darkMode } = useTheme();
 
   const stats = useMemo(() => {
     const total = tasks.length;
@@ -107,12 +109,12 @@ const SummaryContainer = styled(motion.div)`
 `;
 
 const StatCard = styled(motion.div)`
-  background: white;
+  background: var(--card-bg);
   border-radius: 12px;
   padding: 20px;
   display: flex;
   align-items: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 12px var(--shadow-color);
 `;
 
 const StatIcon = styled.div`
@@ -126,18 +128,18 @@ const StatIcon = styled.div`
   margin-right: 16px;
 
   &.progress {
-    background-color: #e9efff;
-    color: #4361EE;
+    background-color: var(--filter-bg);
+    color: var(--accent-color);
   }
 
   &.completed {
     background-color: #e3f9ee;
-    color: #22c55e;
+    color: var(--completed-color);
   }
 
   &.high {
     background-color: #fdeeee;
-    color: #D04848;
+    color: var(--task-high);
   }
 `;
 
@@ -147,21 +149,21 @@ const StatInfo = styled.div`
 
 const StatLabel = styled.p`
   margin: 0 0 8px 0;
-  color: #777;
+  color: var(--text-secondary);
   font-size: 14px;
 `;
 
 const StatValue = styled.h3`
   font-size: 24px;
   margin: 0;
-  color: #333;
+  color: var(--text-primary);
   display: flex;
   align-items: baseline;
 `;
 
 const StatTotal = styled.span`
   font-size: 14px;
-  color: #777;
+  color: var(--text-secondary);
   margin-left: 4px;
   font-weight: normal;
 `;
@@ -175,21 +177,21 @@ const ProgressBarContainer = styled.div`
 const ProgressBar = styled.div`
   flex: 1;
   height: 8px;
-  background: #f0f0f0;
+  background: var(--border-color);
   border-radius: 4px;
   overflow: hidden;
 `;
 
 const ProgressFill = styled.div`
   height: 100%;
-  background-color: #4361EE;
+  background-color: var(--accent-color);
   transition: width 1s ease-out;
 `;
 
 const ProgressText = styled.span`
   font-size: 16px;
   font-weight: 600;
-  color: #333;
+  color: var(--text-primary);
   min-width: 40px;
 `;
 

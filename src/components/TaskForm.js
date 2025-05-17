@@ -3,9 +3,11 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { FiPlus } from 'react-icons/fi';
 import useTaskManager from '../hooks/useTaskManager';
+import useTheme from '../hooks/useTheme';
 
 const TaskForm = () => {
   const { addTask } = useTaskManager();
+  const { darkMode } = useTheme();
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [priority, setPriority] = useState('medium');
@@ -137,7 +139,7 @@ const AddButton = styled(motion.button)`
   align-items: center;
   justify-content: center;
   gap: 8px;
-  background-color: #4361EE;
+  background-color: var(--accent-color);
   color: white;
   border: none;
   border-radius: 8px;
@@ -153,10 +155,10 @@ const AddButton = styled(motion.button)`
 `;
 
 const StyledForm = styled(motion.form)`
-  background: white;
+  background: var(--card-bg);
   border-radius: 12px;
   padding: 20px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 16px var(--shadow-color);
   margin-bottom: 20px;
   overflow: hidden;
 `;
@@ -170,20 +172,22 @@ const Label = styled.label`
   margin-bottom: 8px;
   font-weight: 600;
   font-size: 14px;
-  color: #333;
+  color: var(--text-primary);
 `;
 
 const Input = styled.input`
   width: 100%;
   padding: 12px;
   border-radius: 8px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--border-color);
   font-size: 16px;
+  background-color: var(--card-bg);
+  color: var(--text-primary);
   transition: border-color 0.3s ease;
 
   &:focus {
     outline: none;
-    border-color: #4361EE;
+    border-color: var(--accent-color);
     box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.1);
   }
 `;
@@ -192,16 +196,18 @@ const TextArea = styled.textarea`
   width: 100%;
   padding: 12px;
   border-radius: 8px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--border-color);
   font-size: 16px;
   resize: vertical;
   min-height: 80px;
   font-family: inherit;
+  background-color: var(--card-bg);
+  color: var(--text-primary);
   transition: border-color 0.3s ease;
 
   &:focus {
     outline: none;
-    border-color: #4361EE;
+    border-color: var(--accent-color);
     box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.1);
   }
 `;
@@ -217,12 +223,12 @@ const PriorityOption = styled(motion.button)`
   padding: 10px;
   border: none;
   border-radius: 8px;
-  background-color: ${props => props.selected ? props.color : '#f5f5f5'};
-  color: ${props => props.selected ? '#fff' : '#333'};
+  background-color: ${props => props.selected ? props.color : 'var(--filter-bg)'};
+  color: ${props => props.selected ? '#fff' : 'var(--text-primary)'};
   cursor: pointer;
   font-weight: 600;
   transition: all 0.2s ease;
-  box-shadow: ${props => props.selected ? `0 4px 8px rgba(0, 0, 0, 0.15)` : 'none'};
+  box-shadow: ${props => props.selected ? `0 4px 8px var(--shadow-color)` : 'none'};
 `;
 
 const ButtonGroup = styled.div`
@@ -234,8 +240,8 @@ const ButtonGroup = styled.div`
 
 const CancelButton = styled(motion.button)`
   background: transparent;
-  color: #4361EE;
-  border: 1px solid #4361EE;
+  color: var(--accent-color);
+  border: 1px solid var(--accent-color);
   padding: 10px 20px;
   border-radius: 8px;
   font-size: 14px;
@@ -244,7 +250,7 @@ const CancelButton = styled(motion.button)`
 `;
 
 const SubmitButton = styled(motion.button)`
-  background: #4361EE;
+  background: var(--accent-color);
   color: white;
   border: none;
   padding: 10px 20px;
@@ -252,7 +258,7 @@ const SubmitButton = styled(motion.button)`
   font-size: 14px;
   cursor: pointer;
   font-weight: 600;
-  box-shadow: 0 4px 6px rgba(67, 97, 238, 0.2);
+  box-shadow: 0 4px 6px var(--shadow-color);
   opacity: ${props => props.disabled ? 0.6 : 1};
   cursor: ${props => props.disabled ? 'not-allowed' : 'pointer'};
 `;

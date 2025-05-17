@@ -3,20 +3,21 @@ import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiCheck, FiTrash, FiEdit2, FiChevronDown } from 'react-icons/fi';
 import useTaskManager from '../hooks/useTaskManager';
+import useTheme from '../hooks/useTheme';
 
 const TaskItem = ({ task }) => {
   const { deleteTask, toggleComplete, updateProgress, updateTask } = useTaskManager();
+  const { darkMode } = useTheme();
   const [isDetailsVisible, setIsDetailsVisible] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [editedTitle, setEditedTitle] = useState(task.title);
   const [editedDescription, setEditedDescription] = useState(task.description);
   const [editedPriority, setEditedPriority] = useState(task.priority);
   const [editedProgress, setEditedProgress] = useState(task.progress);
-
   const priorityColors = {
-    low: '#47A992',
-    medium: '#F3AA60',
-    high: '#D04848'
+    low: 'var(--task-low)',
+    medium: 'var(--task-medium)',
+    high: 'var(--task-high)'
   };
 
   const handleProgressChange = (e) => {
@@ -210,18 +211,18 @@ const TaskItem = ({ task }) => {
 };
 
 const TaskContainer = styled(motion.div)`
-  background: white;
+  background: var(--card-bg);
   border-radius: 12px;
   padding: 16px;
   margin-bottom: 16px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 12px var(--shadow-color);
   border-left: 4px solid ${props => {
-    if (props.completed) return '#22c55e';
+    if (props.completed) return 'var(--completed-color)';
     switch(props.priority) {
-      case 'high': return '#D04848';
-      case 'medium': return '#F3AA60';
-      case 'low': return '#47A992';
-      default: return '#4361EE';
+      case 'high': return 'var(--task-high)';
+      case 'medium': return 'var(--task-medium)';
+      case 'low': return 'var(--task-low)';
+      default: return 'var(--accent-color)';
     }
   }};
   opacity: ${props => props.completed ? 0.7 : 1};
@@ -250,8 +251,8 @@ const Checkbox = styled(motion.div)`
   width: 24px;
   height: 24px;
   border-radius: 6px;
-  border: 2px solid ${props => props.completed ? '#22c55e' : '#ddd'};
-  background: ${props => props.completed ? '#22c55e' : 'white'};
+  border: 2px solid ${props => props.completed ? 'var(--completed-color)' : 'var(--border-color)'};
+  background: ${props => props.completed ? 'var(--completed-color)' : 'var(--card-bg)'};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -264,7 +265,7 @@ const Title = styled.h3`
   margin: 0;
   font-size: 16px;
   font-weight: 600;
-  color: #333;
+  color: var(--text-primary);
   text-decoration: ${props => props.completed ? 'line-through' : 'none'};
   opacity: ${props => props.completed ? 0.7 : 1};
   cursor: pointer;
@@ -274,8 +275,10 @@ const TitleInput = styled.input`
   flex: 1;
   padding: 8px 12px;
   border-radius: 6px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--border-color);
   font-size: 16px;
+  background-color: var(--card-bg);
+  color: var(--text-primary);
 `;
 
 const PriorityBadge = styled.span`

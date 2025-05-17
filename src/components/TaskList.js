@@ -4,9 +4,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FiFilter } from 'react-icons/fi';
 import TaskItem from './TaskItem';
 import useTaskManager from '../hooks/useTaskManager';
+import useTheme from '../hooks/useTheme';
 
 const TaskList = () => {
   const { tasks } = useTaskManager();
+  const { darkMode } = useTheme();
   const [filter, setFilter] = useState('all'); // all, active, completed
   const [priorityFilter, setPriorityFilter] = useState('all'); // all, high, medium, low
 
@@ -72,7 +74,7 @@ const TaskList = () => {
           <PriorityFilterButtons>
             <PriorityFilterButton
               active={priorityFilter === 'all'}
-              color="#4361EE"
+              color="var(--accent-color)"
               onClick={() => setPriorityFilter('all')}
               whileHover={{ y: -2 }}
               whileTap={{ y: 0 }}
@@ -81,7 +83,7 @@ const TaskList = () => {
             </PriorityFilterButton>
             <PriorityFilterButton
               active={priorityFilter === 'high'}
-              color="#D04848"
+              color="var(--task-high)"
               onClick={() => setPriorityFilter('high')}
               whileHover={{ y: -2 }}
               whileTap={{ y: 0 }}
@@ -90,7 +92,7 @@ const TaskList = () => {
             </PriorityFilterButton>
             <PriorityFilterButton
               active={priorityFilter === 'medium'}
-              color="#F3AA60"
+              color="var(--task-medium)"
               onClick={() => setPriorityFilter('medium')}
               whileHover={{ y: -2 }}
               whileTap={{ y: 0 }}
@@ -99,7 +101,7 @@ const TaskList = () => {
             </PriorityFilterButton>
             <PriorityFilterButton
               active={priorityFilter === 'low'}
-              color="#47A992"
+              color="var(--task-low)"
               onClick={() => setPriorityFilter('low')}
               whileHover={{ y: -2 }}
               whileTap={{ y: 0 }}
@@ -145,7 +147,7 @@ const ListHeader = styled.div`
 const Title = styled.h2`
   font-size: 24px;
   margin: 0 0 16px 0;
-  color: #333;
+  color: var(--text-primary);
   display: flex;
   align-items: center;
   gap: 8px;
@@ -154,8 +156,8 @@ const Title = styled.h2`
 const TaskCount = styled.span`
   font-size: 14px;
   font-weight: 500;
-  background: #f0f4ff;
-  color: #4361EE;
+  background: var(--filter-bg);
+  color: var(--accent-color);
   padding: 4px 8px;
   border-radius: 12px;
 `;
@@ -168,7 +170,7 @@ const FilterSection = styled.div`
 
 const FilterIcon = styled.div`
   margin-right: 12px;
-  color: #777;
+  color: var(--text-secondary);
 `;
 
 const FilterButtons = styled.div`
@@ -177,8 +179,8 @@ const FilterButtons = styled.div`
 `;
 
 const FilterButton = styled(motion.button)`
-  background: ${props => props.active ? '#4361EE' : '#f0f4ff'};
-  color: ${props => props.active ? 'white' : '#4361EE'};
+  background: ${props => props.active ? 'var(--filter-active-bg)' : 'var(--filter-bg)'};
+  color: ${props => props.active ? 'var(--filter-active-text)' : 'var(--filter-text)'};
   border: none;
   padding: 6px 12px;
   border-radius: 20px;
@@ -200,7 +202,7 @@ const PriorityFilterButtons = styled.div`
 
 const PriorityFilterButton = styled(motion.button)`
   background: ${props => props.active ? props.color : 'transparent'};
-  color: ${props => props.active ? 'white' : props.color};
+  color: ${props => props.active ? 'var(--card-bg)' : props.color};
   border: 1px solid ${props => props.color};
   padding: 6px 12px;
   border-radius: 20px;
@@ -215,19 +217,20 @@ const EmptyState = styled(motion.div)`
   align-items: center;
   justify-content: center;
   padding: 40px 0;
-  background: #f9f9f9;
+  background: var(--card-bg);
   border-radius: 12px;
+  box-shadow: 0 4px 12px var(--shadow-color);
 `;
 
 const EmptyText = styled.h3`
   margin: 0 0 8px 0;
-  color: #555;
+  color: var(--text-primary);
   font-size: 18px;
 `;
 
 const EmptySubtext = styled.p`
   margin: 0;
-  color: #888;
+  color: var(--text-secondary);
   font-size: 14px;
 `;
 

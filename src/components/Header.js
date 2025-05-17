@@ -41,7 +41,7 @@ const HeaderContainer = styled.header`
 const Logo = styled.h1`
   font-size: 32px;
   font-weight: 700;
-  color: #4361EE;
+  color: var(--accent-color);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -54,7 +54,7 @@ const Logo = styled.h1`
 `;
 
 const SubTitle = styled.p`
-  color: #777;
+  color: var(--text-secondary);
   font-size: 16px;
   margin: 8px 0 0;
 `;
