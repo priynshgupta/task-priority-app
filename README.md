@@ -1,10 +1,26 @@
-# Getting Started with Create React App
+# TaskPriority App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern task management application with priority levels and progress tracking. Built for CodeCircuit Hackathon.
+
+## Features
+
+- Create, edit, and delete tasks
+- Set priority levels (high, medium, low)
+- Track progress with interactive progress bars
+- Filter tasks by status and priority
+- Responsive design for all devices
+- Animated UI components for better user engagement
+- Local storage persistence
+
+## Tech Stack
+
+- React.js
+- Framer Motion for animations
+- Styled Components for styling
+- React Icons for UI elements
+- UUID for unique identifiers
 
 ## Available Scripts
-
-In the project directory, you can run:
 
 ### `npm start`
 
@@ -65,6 +81,50 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/a
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `npm run build` fails to minify
+### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project is configured for GitHub Pages deployment:
+
+```
+npm run deploy
+```
+
+## Project Structure
+
+```
+task-priority-app/
+├── public/
+├── src/
+│   ├── components/
+│   │   ├── Header.js
+│   │   ├── Summary.js
+│   │   ├── TaskForm.js
+│   │   ├── TaskItem.js
+│   │   └── TaskList.js
+│   ├── contexts/
+│   │   └── TaskContext.js
+│   ├── hooks/
+│   │   └── useTaskManager.js
+│   ├── App.js
+│   └── index.js
+└── package.json
+```
+
+## Future Enhancements
+
+- User authentication
+- Cloud synchronization
+- Task categories and tags
+- Due dates and reminders
+- Drag and drop task reordering
+- Dark mode support
+
+## License
+
+MIT
+
+## Author
+
+Priyanshukumarsinha
+
+Created for CodeCircuit Hackathon
